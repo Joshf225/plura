@@ -16,6 +16,7 @@ import { Role } from "@prisma/client";
 import { Card } from "../ui/card";
 import { Switch } from "../ui/switch";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { ModeToggle } from "./mode-toggle";
 
 type Props = {
   notifications: NotificationWithUser | [];
@@ -24,7 +25,7 @@ type Props = {
   subAccountId?: string;
 };
 
-const InforBar = ({ notifications, subAccountId, className, role }: Props) => {
+const InfoBar = ({ notifications, subAccountId, className, role }: Props) => {
   const [allNotifications, setAllNotifications] = useState(notifications);
   const [showAll, setShowAll] = useState(true);
 
@@ -73,13 +74,13 @@ const InforBar = ({ notifications, subAccountId, className, role }: Props) => {
               {allNotifications?.map((notification) => (
                 <div
                   key={notification.id}
-                  className="flex flex-col gap-y-2 overflow-x-scroll text-ellipsis"
+                  className="flex flex-col gap-y-2 mb-2 overflow-x-scroll text-ellipsis"
                 >
                   <div className="flex gap-2">
                     <Avatar>
                       <AvatarImage
                         src={notification.User.avatarUrl}
-                        alt="Profile Picture "
+                        alt="Profile Picture"
                       />
                       <AvatarFallback className="bg-primary">
                         {notification.User.name.slice(0, 2).toUpperCase()}
@@ -114,10 +115,11 @@ const InforBar = ({ notifications, subAccountId, className, role }: Props) => {
               )}
             </SheetContent>
           </Sheet>
+          <ModeToggle />
         </div>
       </div>
     </>
   );
 };
 
-export default InforBar;
+export default InfoBar;
