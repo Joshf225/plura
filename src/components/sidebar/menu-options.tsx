@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Agency,
   AgencySidebarOption,
@@ -22,10 +23,10 @@ import {
   CommandList,
 } from "../ui/command";
 import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 import { useModal } from "@/providers/modal-provider";
 import CustomModal from "../global/custom-modal";
 import SubAccountDetails from "../forms/subaccount-details";
-import AgencyDetails from "../forms/agency-details";
 import { Separator } from "../ui/separator";
 import { icons } from "@/lib/constants";
 
@@ -40,13 +41,13 @@ type Props = {
 };
 
 const MenuOptions = ({
-  defaultOpen,
-  subAccounts,
-  sidebarOpt,
-  sidebarLogo,
   details,
-  user,
   id,
+  sidebarLogo,
+  sidebarOpt,
+  subAccounts,
+  user,
+  defaultOpen,
 }: Props) => {
   const { setOpen } = useModal();
   const [isMounted, setIsMounted] = useState(false);
@@ -61,11 +62,12 @@ const MenuOptions = ({
   }, []);
 
   if (!isMounted) return;
+
   return (
     <Sheet modal={false} {...openState}>
       <SheetTrigger
         asChild
-        className="absolute left-4 top-4 z-[100] md:hidden flex"
+        className="absolute left-4 top-4 z-[100] md:!hidden felx"
       >
         <Button variant="outline" size={"icon"}>
           <Menu />
@@ -116,12 +118,12 @@ const MenuOptions = ({
               <Command className="rounded-lg">
                 <CommandInput placeholder="Search Accounts..." />
                 <CommandList className="pb-16">
-                  <CommandEmpty>No results found</CommandEmpty>
+                  <CommandEmpty> No results found</CommandEmpty>
                   {(user?.role === "AGENCY_OWNER" ||
                     user?.role === "AGENCY_ADMIN") &&
                     user?.Agency && (
                       <CommandGroup heading="Agency">
-                        <CommandItem className="!bg-transparent my-2 text-primary border-[1px] border-border p-2 rounded-md hover:!bg-muted cursor-pointer transition-all">
+                        <CommandItem className="!bg-transparent my-2 text-primary broder-[1px] border-border p-2 rounded-md hover:!bg-muted cursor-pointer transition-all">
                           {defaultOpen ? (
                             <Link
                               href={`/agency/${user?.Agency?.id}`}
@@ -174,42 +176,42 @@ const MenuOptions = ({
                           <CommandItem key={subaccount.id}>
                             {defaultOpen ? (
                               <Link
-                                href={`/subaccount/${subaccount?.id}`}
+                                href={`/subaccount/${subaccount.id}`}
                                 className="flex gap-4 w-full h-full"
                               >
                                 <div className="relative w-16">
                                   <Image
-                                    src={subaccount?.subAccountLogo}
-                                    alt="Subaccount Logo"
+                                    src={subaccount.subAccountLogo}
+                                    alt="subaccount Logo"
                                     fill
                                     className="rounded-md object-contain"
                                   />
                                 </div>
                                 <div className="flex flex-col flex-1">
-                                  {subaccount?.name}
+                                  {subaccount.name}
                                   <span className="text-muted-foreground">
-                                    {subaccount?.address}
+                                    {subaccount.address}
                                   </span>
                                 </div>
                               </Link>
                             ) : (
                               <SheetClose asChild>
                                 <Link
-                                  href={`/subaccount/${subaccount?.id}`}
+                                  href={`/subaccount/${subaccount.id}`}
                                   className="flex gap-4 w-full h-full"
                                 >
                                   <div className="relative w-16">
                                     <Image
-                                      src={subaccount?.subAccountLogo}
-                                      alt="Subaccount Logo"
+                                      src={subaccount.subAccountLogo}
+                                      alt="subaccount Logo"
                                       fill
                                       className="rounded-md object-contain"
                                     />
                                   </div>
                                   <div className="flex flex-col flex-1">
-                                    {subaccount?.name}
+                                    {subaccount.name}
                                     <span className="text-muted-foreground">
-                                      {subaccount?.address}
+                                      {subaccount.address}
                                     </span>
                                   </div>
                                 </Link>
@@ -241,7 +243,7 @@ const MenuOptions = ({
                       }}
                     >
                       <PlusCircleIcon size={15} />
-                      Create a Sub Account
+                      Create Sub Account
                     </Button>
                   </SheetClose>
                 )}
@@ -273,7 +275,8 @@ const MenuOptions = ({
                           href={sidebarOptions.link}
                           className="flex items-center gap-2 hover:bg-transparent rounded-md transition-all md:w-full w-[320px]"
                         >
-                          {val} <span>{sidebarOptions.name}</span>
+                          {val}
+                          <span>{sidebarOptions.name}</span>
                         </Link>
                       </CommandItem>
                     );

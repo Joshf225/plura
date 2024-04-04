@@ -58,7 +58,7 @@ const LaunchPadPage = async ({ params, searchParams }: Props) => {
                   width={80}
                   className="rounded-md object-contain"
                 />
-                <p>Save the website as a shortcute on your mobile device</p>
+                <p>Save the website as a shortcut on your mobile device</p>
               </div>
               <Button>Start</Button>
             </div>
