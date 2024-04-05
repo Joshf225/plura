@@ -15,7 +15,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { deletePipeline, saveActivityLogsNotification } from "@/lib/queries";
+import { deletePipeline } from "@/lib/queries";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 
@@ -49,13 +49,8 @@ const PipelineSettings = ({
               <AlertDialogAction
                 onClick={async () => {
                   try {
-                    const response = await deletePipeline(pipelineId);
+                    await deletePipeline(pipelineId);
                     //Challenge: Activity log
-                    await saveActivityLogsNotification({
-                      agencyId: undefined,
-                      description: `Deleted pipeline | ${response?.name}`,
-                      subaccountId: response.subAccountId,
-                    });
                     toast({
                       title: "Deleted",
                       description: "Pipeline is deleted",

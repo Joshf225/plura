@@ -32,6 +32,7 @@ import React, { Dispatch, SetStateAction, useMemo } from "react";
 // import PipelineTicket from './pipeline-ticket'
 import CustomModal from "@/components/global/custom-modal";
 import TicketForm from "@/components/forms/ticket-form";
+import PipelineTicket from "./pipeline-ticket";
 
 interface PipelaneLaneProps {
   setAllTickets: Dispatch<SetStateAction<TicketWithTags>>;
@@ -57,7 +58,7 @@ const PipelineLane: React.FC<PipelaneLaneProps> = ({
 
   const amt = new Intl.NumberFormat(undefined, {
     style: "currency",
-    currency: "USD",
+    currency: "EUR",
   });
 
   const laneAmt = useMemo(() => {
@@ -180,15 +181,14 @@ const PipelineLane: React.FC<PipelaneLaneProps> = ({
                           className="mt-2"
                         >
                           {tickets.map((ticket, index) => (
-                            <div key={ticket.id.toString()}></div>
-                            // <PipelineTicket
-                            //   allTickets={allTickets}
-                            //   setAllTickets={setAllTickets}
-                            //   subaccountId={subaccountId}
-                            //   ticket={ticket}
-                            //   key={ticket.id.toString()}
-                            //   index={index}
-                            // />
+                            <PipelineTicket
+                              allTickets={allTickets}
+                              setAllTickets={setAllTickets}
+                              subaccountId={subaccountId}
+                              ticket={ticket}
+                              key={ticket.id.toString()}
+                              index={index}
+                            />
                           ))}
                           {provided.placeholder}
                         </div>
