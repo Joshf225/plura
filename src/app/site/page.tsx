@@ -40,8 +40,8 @@ export default function Home() {
           Our straightforward pricing plans are tailored to me et your needs. If{" "}
           {" you're"} not <br /> ready to cimmit you can get started for free
         </p>
+        {/* WIP: Wire up free product from stripe */}
         <div className="flex justify-center gap-4 flex-wrap mt-6">
-          //WIP: Wire up free product from stripe
           {pricingCards.map((card) => (
             <Card
               key={card.title}
