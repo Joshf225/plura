@@ -64,7 +64,7 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
     const response = await stripe.accounts.retrieve({
       stripeAccount: subaccountDetails.connectAccountId,
     });
-    currency = response.default_currency?.toUpperCase() || "USD";
+    currency = response.default_currency?.toUpperCase() || "EUR";
     const checkoutSessions = await stripe.checkout.sessions.list(
       { created: { gte: startDate, lte: endDate }, limit: 100 },
       {
@@ -154,7 +154,7 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
               <CardHeader>
                 <CardDescription>Income</CardDescription>
                 <CardTitle className="text-4xl">
-                  {net ? `${currency} ${net.toFixed(2)}` : `$0.00`}
+                  {net ? `${currency} ${net.toFixed(2)}` : `€0.00`}
                 </CardTitle>
                 <small className="text-xs text-muted-foreground">
                   For the year {currentYear}
@@ -171,7 +171,7 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
                 <CardTitle className="text-4xl">
                   {potentialIncome
                     ? `${currency} ${potentialIncome.toFixed(2)}`
-                    : `$0.00`}
+                    : `€0.00`}
                 </CardTitle>
                 <small className="text-xs text-muted-foreground">
                   For the year {currentYear}
