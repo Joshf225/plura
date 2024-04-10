@@ -23,12 +23,7 @@ import {
 import { db } from "@/lib/db";
 import { stripe } from "@/lib/stripe";
 import { AreaChart, BadgeDelta } from "@tremor/react";
-import {
-  ClipboardIcon,
-  Contact2,
-  DollarSign,
-  ShoppingCart,
-} from "lucide-react";
+import { ClipboardIcon, Contact2, Euro, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -163,7 +158,7 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
               <CardContent className="text-sm text-muted-foreground">
                 Total revenue generated as reflected in your stripe dashboard.
               </CardContent>
-              <DollarSign className="absolute right-4 top-4 text-muted-foreground" />
+              <Euro className="absolute right-4 top-4 text-muted-foreground" />
             </Card>
             <Card className="flex-1 relative">
               <CardHeader>
