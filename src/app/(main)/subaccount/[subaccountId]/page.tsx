@@ -175,7 +175,7 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
               <CardContent className="text-sm text-muted-foreground">
                 This is how much you can close.
               </CardContent>
-              <Contact2 className="absolute right-4 top-4 text-muted-foreground" />
+              <Euro className="absolute right-4 top-4 text-muted-foreground" />
             </Card>
             <PipelineValue subaccountId={params.subaccountId} />
 
